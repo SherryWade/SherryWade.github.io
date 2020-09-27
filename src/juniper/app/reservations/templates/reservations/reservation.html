@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+{% from "_comment_form.html" import comment_form %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h1>Reservation Information</h1>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col col-md-5">
+        <div class="card ">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Reservation</h6>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th scope="row">Name</th>
+                        <td>{{ reservation.under_name}}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Booking Time</th>
+                        <td>{{ reservation.booking_time.strftime('%a, %b %-d, %Y: %-I:%M %p') }}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">IP Address</th>
+                        <td>{{ reservation.transaction_request.ip_address }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col col-md-5 offset-md-2">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">Event Information</h6>
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <th scope="row">Event Name</th>
+                                <td>{{ reservation.reservation_for.parent.alternate_name}}</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Show Time</th>
+                                <td>{{ reservation.reservation_for.start_time.strftime('%a, %b %-d, %Y: %-I:%M %p') }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if reservation.disambiguating_description %}
+        <div class="row mt-5">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">Reservation Comment</h6>
+                        <hr>
+                        <p>{{ reservation.disambiguating_description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col">
+        <h2>Payment Information</h2>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col col-md-5">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Billing Information</h6>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th scope="row">Name</th>
+                        <td>
+                            {{ reservation.transaction_request.bill_to.first_name}}
+                            {{ reservation.transaction_request.bill_to.last_name}}
+                        </td>
+                    </tr>
+
+                    {% if reservation.transaction_request.bill_to.address %}
+                    <tr>
+                        <th scope="row">Address</th>
+                        <td>
+                            {{ reservation.transaction_request.bill_to.address}} <br>
+                            {{ reservation.transaction_request.bill_to.city}},
+                            {{ reservation.transaction_request.bill_to.state}}
+                            {{ reservation.transaction_request.bill_to.zip}}
+                        </td>
+                    </tr>
+                    {% endif %}
+
+                    {% if reservation.transaction_request.customer.phone %}
+                    <tr>
+                        <th scope="row">Phone</th>
+                        <td>
+                            {{ reservation.transaction_request.customer.phone }}
+                        </td>
+                    </tr>
+                    {% endif %}
+
+                    {% if reservation.transaction_request.customer.email %}
+                    <tr>
+                        <th scope="row">Email</th>
+                        <td>
+                            {{ reservation.transaction_request.customer.email }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {% if reservation.transaction_request.payment.credit_card %}
+    <div class="col col-md-5 offset-md-2">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Card Information</h6>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th scope="row">Credit Card Number</th>
+                        <td>{{ reservation.transaction_request.payment.credit_card.number}}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Credit Card CVV</th>
+                        <td>{{ reservation.transaction_request.payment.credit_card.card_code}}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Expiration</th>
+                        <td>{{ reservation.transaction_request.payment.credit_card.expiration_date}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<div class="row mt-5">
+    <div class="col">
+        <h2>Purchase Details</h2>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Line Items</h6>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Item</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Unit Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for line_item in reservation.transaction_request.line_items %}
+                    <tr>
+                        <td>{{ line_item.name }}</td>
+                        <td>{{ line_item.quantity }}</td>
+                        <td>${{ line_item.unit_price}}</td>
+                    </tr>
+                    {% endfor %}
+
+                    <tr>
+                        <td><b>Taxes</b></td>
+                        <td></td>
+                        <td>${{ reservation.transaction_request.taxes }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Fees</b></td>
+                        <td></td>
+                        <td>${{ reservation.transaction_request.fees }}</td>
+                    </tr>
+
+                    <tr class="table-secondary">
+                        <td><b>Total</b></td>
+                        <td></td>
+                        <td>${{ reservation.transaction_request.amount }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col">
+        <h2>Comments</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Reservation Comments</h6>
+                {% for post in reservation.comments %}
+                <table class="table table-hover">
+                    <tr>
+                        <td width="70px">
+                            {% if post.author %}
+                            <a href="{# url_for('user', username=post.author.username) #}">
+                                <img src="{{ post.author.avatar(70) }}" />
+                            </a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if post.author %}
+                            <a href="{# url_for('user', username=post.author.username) #}">
+                                {{ post.author.username }}
+                            </a>
+                            said
+                            {% endif %}
+                            {{ moment(post.timestamp, local=True).fromNow() }}:
+                            <br>
+                            {{ post.body }}
+                        </td>
+                    </tr>
+                </table>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col">
+        {{ comment_form(form) }}
+    </div>
+</div>
+
+{% endblock %}

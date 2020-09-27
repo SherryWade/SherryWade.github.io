@@ -1,0 +1,65 @@
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+  Please fix the form errors and try again.
+</div>
+{% endif %}
+
+<form action="" class="form" method="post" role="form" novalidate>
+    <div class="row">
+        <div class="col">
+            {{ render_field(form.name) }}
+            {{ render_field(form.alternate_name) }}
+            {{ render_field(form.max_capacity) }}
+            {{ render_field(form.primary_image) }}
+            {{ render_field(form.secondary_image) }}
+            {{ render_field(form.slug) }}
+        </div>
+
+        <div class="col">
+            <div class="form-group">
+                {{ form.description.label }}
+                {{ form.description(class="form-control", id="description", rows="8") }}
+            </div>
+            {{ render_field(form.disambiguating_description) }}
+            {{ render_field(form.calendar_code) }}
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col">
+            <h3>Audience and Rating Information</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ render_field(form.audience_name) }}
+        </div>
+
+        <div class="col">
+            {{ render_field(form.audience_type) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ render_field(form.disambiguating_description) }}
+        </div>
+
+        <div class="col">
+            {{ render_field(form.audience_description) }}
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col">
+            <div class="form-check">
+                {{ form.active(class="form-check-input", id="active") }}
+                {{ form.active.label(class="form-check-label", for="active") }}
+            </div>
+        </div>
+    </div>
+
+    {{ form.csrf_token }}
+    {{ form.submit(class="btn btn-lg btn-primary btn-block") }}
+</form>

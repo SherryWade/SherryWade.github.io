@@ -1,0 +1,45 @@
+{% extends "blackfedora/base.html" %}
+
+{% block content %}
+
+<div class="interiorPageMain">
+    <div class="oneThird" style="margin-bottom:0px;">
+        <div>
+            <ul class="rslides" id="slider1" style="max-width:318px">
+                <li><img class="main_img" style="width:100%;" src="{{ url_for('blackfedora.static', filename='images/theatre_images/photo1.jpg') }}"/></li>
+                <li><img class="main_img" style="width:100%; " src="{{ url_for('blackfedora.static', filename='images/theatre_images/photo2.jpg') }}" /></li>
+                <li><img class="main_img" style="width:100%;" src="{{ url_for('blackfedora.static', filename='images/theatre_images/photo3.jpg') }}" /></li>
+                <li><img class="main_img" style="width:100%; " src="{{ url_for('blackfedora.static', filename='images/theatre_images/photo4.jpg') }}" /></li>
+                <li><img class="main_img" style="width:100%;" src="{{ url_for('blackfedora.static', filename='images/theatre_images/photo5.jpg') }}" /></li>
+                <li><img class="main_img" style="width:100%;" src="{{ url_for('blackfedora.static', filename='images/theatre_images/photo6.jpg') }}" /></li>
+            </ul>
+        </div>
+
+        <div>
+            <p style="text-align:left;margin-top:20px;margin-bottom:30px">
+                <a href="{{ url_for('blackfedora.buy_tickets') }}" class="customButton">BUY TICKETS</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="twoThird" style="margin-bottom:0px">
+        <h1>What to Expect at the Black Fedora</h1>
+        <p><h2 class="customH3">What is this?</h2>Our comic mysteries are similar to a play, though instead of a set, the actors use the whole space as the stage. Shows are often zany, with witty wordplay, and feature roles for up to 20 volunteer audience members! <b>(You <u>do not</u> have to volunteer.)</b></p>
+        <p><h2 class="customH3">How does it work?</h2>Guests sit at booths and cocktail tables in a cozy theatre, enjoying snacks, desserts and drinks while watching our actors interact with volunteer audience members.</p>
+        <p><h2 class="customH3">What do audience volunteers do?</h2>At the top of the show volunteers are provided scripts. When it's their turn, they simply stand at their seats and read their parts. </p>
+
+        <p><h2 class="customH3">Is it broadway-style theatre?</h2>Uh ... no. While our shows are scripted, we're casual, often silly, slightly irreverent (though also clean), and highly interactive.</p>
+        <p><h2 class="customH3">Is dinner included?</h2>The ticket price is for the show only. We don't offer dinner, but we do have snacks, homemade desserts, beer, wine, sodas, etc. </p>
+        <p><h2 class="customH3">How long is a show?</h2>Approximately two hours. </p>
+        <p><h2 class="customH3">What's the best show?</h2>The question really is, "Which show description appeals to you most?"  We typically run each show at least once a week, so pick the plot that strikes you.  </p>
+        <p><h2 class="customH3">Is this a comedy or a mystery?</h2>Both, but our main goals are to make you laugh and to give volunteer audience members the chance to be stars, so the shows are predominately comic. </p>
+        <p><h2 class="customH3">What should I wear?</h2>Dress is casual but bring a sweater or light jacket — we keep it cool!</p>
+        <p><h2 class="customH3">Can I bring my kids?</h2>While the shows are for adults, they are appropriate for children, especially ages 9 and up. We use no bad language at all and say nothing crude. Your children won't get many of the references that you will (we hope) find funny, but there will be plenty of laughs for them as well. And while we love them, we ask that you don't bring children under 6 to our cozy space &mdash; they get ALL the attention!
+
+        <br><br>
+        Hope we see you at the theatre soon!<br>&nbsp;</p>
+    </div>
+</div>
+
+{% endblock %}
+

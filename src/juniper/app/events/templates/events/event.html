@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% from "dashboard/modals.html" import ticket_selection_modal %}
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('events.edit_performance', event_id=event.id) }}">Edit</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="row">
+    <div class="col">
+        <h1>
+            {{ event.alternate_name if event.name else event.parent.alternate_name }}
+        </h1>
+        <h5>{{ event.start_time.strftime('%a, %b %-d, %Y: %-I:%M %p')}}</h5>
+        <hr/>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <h2>Description</h2>
+        {{ event.parent.description }}
+        <hr />
+
+        <h2>Seating Information</h2>
+        <h4>Max Capacity</h4>
+        <p>{{ event.parent.maximum_attendee_capacity }}</p>
+
+        <hr />
+
+        <h2>Audience Information</h2>
+        <h4>Rating</h4>
+        <p>{{ event.parent.audience.name }}</p>
+
+        {% if event.parent.audience.description %}
+        <h4>Description</h4>
+        <p>{{ event.parent.audience.description }}</p>
+        {% endif %}
+
+        {% if event.parent.audience.disambiguating_description %}
+        <h4>Disambiguating Description</h4>
+        <p>{{ event.parent.audience.disambiguating_description }}</p>
+        {% endif %}
+
+        {% if event.audience.audience_type %}
+        <h4>Audience Type</h4>
+        <p>{{ event.parent.audience.audience_type }}</p>
+        {% endif %}
+    </div>
+
+    <div class="col">
+        {% if event.primary_image %}
+        <img width="100%" src="{{ url_for('blackfedora.static', filename='images/{}'.format(event.primary_image)) }}">
+        {% elif event.parent.primary_image %}
+        <img width="100%" src="{{ url_for('blackfedora.static', filename='images/{}'.format(event.parent.primary_image)) }}">
+        {% endif %}
+
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Reservations</h6>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Ticket Count</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for r in event.reservations %}
+                    <tr>
+                        <td>{{ r.under_name }}</td>
+                        <td>{{ r.tickets | count }}</td>
+                        <td>
+                            <a href="{{ url_for('reservations.reservation', reservation_id=r.id) }}">
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ticket_selection_modal">
+                    Sell Tickets
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+{{ ticket_selection_modal(ticket_selection_form) }}
+{% endblock %}

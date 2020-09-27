@@ -1,0 +1,50 @@
+<html lang="en">
+<body>
+    <h1>The Black Fedora Comedy Mystery Theatre</h1>
+
+    <p>Thank you for ordering your tickets online.  The details of your order are below:</p>
+
+    <p>
+        <b>Show:</b> {{ event.parent.name }}
+        <br>
+        <b>Show Time:</b> {{ event.start_time.strftime('%a, %b %-d, %Y: %-I:%M %p') }}
+    </p>
+
+    <p>
+        <b>Reservation Name:</b>{{ reservation.under_name }}
+        <br>
+        <b>Reservation ID:</b>
+        <a href="">{{ reservation.id }}</a>
+    </p>
+
+    <h3>Purchased Items</h3>
+
+    {% for line_item in reservation.transaction_request.line_items %}
+    <p>
+        {{ line_item.name }}
+        <br>
+        Quantity: {{ line_item.quantity }}
+        <br>
+        Unit Price: ${{ line_item.unit_price}}
+    </p>
+    {% endfor %}
+
+    <p>
+        Taxes: ${{ reservation.transaction_request.taxes }}
+        <br>
+        Fees: ${{ reservation.transaction_request.fees }}
+        <br>
+        Total: ${{ reservation.transaction_request.amount }}
+    </p>
+
+    <h3>Contact Information</h3>
+
+    <p>
+        164 Church Street
+        <br>
+        Charleston, SC 29401
+        <br>
+        (843) 937-6453
+    </p>
+</body>
+</html>

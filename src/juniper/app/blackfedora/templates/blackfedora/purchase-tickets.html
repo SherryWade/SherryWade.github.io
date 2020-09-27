@@ -1,0 +1,16 @@
+{% extends "blackfedora/base.html" %}
+
+{% block content %}
+<div class="interiorPageMain">
+    <h1>Purchase Tickets</h1>
+    <p>We charge no shipping or additional fees. When your online order is complete, you will receive
+        a <font color="#FF0000">confirmation number</font> and be placed on the show's reservation list.
+        Then we'll see you at the theatre on the night of the show!</p>
+
+    <p>We love them, but no children under 6 in our cozy space please. Thank you!</p>
+
+    <br/>
+
+    {% include 'blackfedora/_payment_form.html' %}
+</div>
+{% endblock %}

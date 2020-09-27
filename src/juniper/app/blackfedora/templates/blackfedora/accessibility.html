@@ -1,0 +1,33 @@
+{% extends "blackfedora/base.html" %}
+
+{% block content %}
+
+<div class="interiorPageMain">
+    <div class="halfCol">
+        <img src="{{ url_for('blackfedora.static', filename='images/img.png') }}" alt="Theater Interior">
+    </div>
+
+    <div class="halfCol">
+        <h1>Accessibility</h1>
+
+        <p>Because our seating consists of tables and chairs, it is easy to move a chair or two and have a wheelchair
+            near a table instead. Or many people enter and then ask to store a wheelchair or walker in our shop area
+            while they sit in a chair to watch the show. We are a tiny place, so we appreciate it when guests are able
+            to let us know beforehand that they have a wheelchair or something that will require more room.</p>
+
+        <p>We have two entrances (just a few steps from each other). One has two steps and the other has none &mdash;
+            allowing a wheelchair to enter and go straight to a table.</p>
+
+        <p>We have two bathrooms, and one of them is handicapped accessible.</p>
+
+        <p>A parking garage with many handicapped spaces reserved on the ground floor is across
+            the street from the theatre.</p>
+
+        <p>We have peanuts on our appetizer menu, but we occasionally have a guest tell us of severe allergies, and we
+            put the peanuts away for the night.</p>
+
+    </div>
+
+</div>
+
+{% endblock %}

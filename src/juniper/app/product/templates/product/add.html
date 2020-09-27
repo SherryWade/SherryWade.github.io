@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h1>Add New Product</h1>
+        <hr/>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        {% include 'product/_product_form.html' %}
+    </div>
+</div>
+{% endblock %}

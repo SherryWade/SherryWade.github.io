@@ -1,0 +1,7 @@
+{% from "_formhelpers.html" import render_field %}
+
+<form action="{{ url_for('blackfedora.confirm_payment') }}" class="form" method="post" role="form" novalidate>
+    {% for field in form._fields %}
+    {{ form._fields[field] }}
+    {% endfor %}
+</form>

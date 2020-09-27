@@ -1,0 +1,16 @@
+{% if event_offer_form.errors %}
+<div class="alert alert-danger" role="alert">
+  Please fix the form errors and try again.
+</div>
+{% endif %}
+
+<form action="{{ url_for('events.add_pricing_option', event_id=event.id) }}" class="form" method="post" role="form" novalidate>
+    <div class="row">
+        <div class="col">
+            {{ render_field(event_offer_form.product) }}
+        </div>
+    </div>
+
+    {{ event_offer_form.csrf_token }}
+    {{ event_offer_form.submit(class="btn btn-lg btn-primary btn-block") }}
+</form>

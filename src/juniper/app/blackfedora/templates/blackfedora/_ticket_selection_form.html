@@ -1,0 +1,17 @@
+
+<form action="{{ url_for('blackfedora.proceed_to_checkout', event_id=form.event_id.data) }}"
+      class="form" method="post" role="form" novalidate>
+    {% for field in form._fields %}
+    {% if field.startswith('offer_') %}
+    <div class="row">
+        <div class="col">
+            {{ render_field(form._fields[field]) }}
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {{ form.event_id }}
+    {{ form.csrf_token }}
+    {{ form.submit(class="mt-5 mb-6 btn btn-lg btn-primary btn-block") }}
+</form>

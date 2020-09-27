@@ -1,0 +1,15 @@
+
+Thank you for ordering your tickets online.  The details of your order are below:
+
+Show: {{ event.parent.name }}
+
+Show Time: {{ event.start_time.strftime('%a, %b %-d, %Y: %-I:%M %p') }}
+
+Reservation Name: {{ reservation.under_name }}
+
+Reservation ID: {{ reservation.id }}
+
+The Black Fedora Comedy Mystery Theatre
+164 Church Street
+Charleston, SC 29401
+(843) 937-6453

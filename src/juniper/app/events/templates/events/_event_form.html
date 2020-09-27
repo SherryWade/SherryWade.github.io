@@ -1,0 +1,71 @@
+<form action="" class="form" method="post" role="form">
+    <div class="col">
+        <div class="form-group">
+            {{ form.name.label }}
+            {{ form.name(class="form-control", id="name")}}
+        </div>
+        <div class="form-group">
+            {{ form.max_capacity.label }}
+            {{ form.max_capacity(class="form-control", id="max_capacity") }}
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="form-group">
+            {{ form.door_time.label }}
+            {{ form.door_time(class="form-control", id="door_time") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.start_time.label }}
+            {{ form.start_time(class="form-control", id="start_time") }}
+        </div>
+        <div class="form-group">
+            {{ form.end_time.label }}
+            {{ form.end_time(class="form-control", id="end_time") }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form.description.label }}
+        {{ form.description(class="form-control", id="description", rows="5") }}
+    </div>
+    <div class="form-group">
+        {{ form.active.label }}
+        {{ form.active(class="form-control", id="active") }}
+    </div>
+    <div class="form-group">
+        {{ form.image.label }}
+        {{ form.image(class="form-control", id="image") }}
+    </div>
+    <div class="form-group">
+        {{ form.audience_name.label }}
+        {{ form.audience_name(class="form-control", id="audience_name") }}
+
+        {{ form.audience_type.label }}
+        {{ form.audience_type(class="form-control", id="audience_type") }}
+
+        {{ form.audience_description.label }}
+        {{ form.audience_description(class="form-control", id="audience_description", rows="5") }}
+
+        {{ form.disambiguating_description.label }}
+        {{ form.disambiguating_description(class="form-control", id="disambiguating_description", rows="5") }}
+    </div>
+
+    <div class="form-group">
+        {{ form.audience_name.label }}
+        {{ form.audience_name(class="form-control", id="audience_name") }}
+
+        {{ form.audience_description.label }}
+        {{ form.audience_description(class="form-control", id="audience_description") }}
+
+        {{ form.disambiguating_description.label }}
+        {{ form.disambiguating_description(class="form-control", id="disambiguating_description") }}
+
+        {{ form.audience_type.label }}
+        {{ form.audience_type(class="form-control", id="audience_type") }}
+    </div>
+
+    {{ form.csrf_token }}
+    {{ form.submit(class="btn btn-lg btn-primary btn-block") }}
+</form>

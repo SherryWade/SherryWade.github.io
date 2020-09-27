@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('auth.static', filename='css/style.css') }}" />
+{% endblock %}
+
+{% block navbar %}{% endblock %}
+{% block content %}
+<form action="{{ url_for('auth.login') }}" method="POST" class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    {{form.username(class="form-control", id="username", placeholder="Username")}}
+    {{ form.password(class="form-control", id="password", placeholder="Password", type="password") }}
+    {{ form.csrf_token }}
+    {{ form.submit(class="btn btn-lg btn-primary btn-block") }}
+    <!--<p>
+        Forgot Your Password?
+        <a href="{# url_for('auth.reset_password') #}">Click to Reset It</a>
+    </p>-->
+    <p class="mb-3 text-muted">Charleston<sup>AI</sup> &copy; 2020</p>
+</form>
+{% endblock %}

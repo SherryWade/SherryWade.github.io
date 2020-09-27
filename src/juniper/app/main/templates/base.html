@@ -1,0 +1,130 @@
+{% from "_formhelpers.html" import render_field %}
+
+{% block doc %}
+<!doctype html>
+
+<html lang="en">
+{% block html %}
+  <head>
+    {% block head %}
+    <title>{% block title %}
+    {% if title %}{{ title }} | {% endif %} Juniper Tickets
+    {% endblock %}</title>
+
+    {% block metas %}
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+    {%- endblock metas %}
+
+    {% block styles %}
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <link href="{{ url_for('main.static', filename='vendor/fullcalendar-4.3.1/packages/core/main.css') }}" rel='stylesheet' />
+      <link href="{{ url_for('main.static', filename='vendor/fullcalendar-4.3.1/packages/daygrid/main.css') }}" rel='stylesheet' />
+      <link href="{{ url_for('main.static', filename='vendor/fullcalendar-4.3.1/packages/timegrid/main.css') }}" rel='stylesheet' />
+      <link href="{{ url_for('main.static', filename='vendor/fullcalendar-4.3.1/packages/list/main.css') }}" rel='stylesheet' />
+      <link href="{{ url_for('main.static', filename='vendor/fontawesome-free-5.12.1-web/css/all.min.css') }}" rel='stylesheet' />
+      <link rel="stylesheet" href="{{ url_for('main.static', filename='css/style.css') }}" />
+    {% endblock styles %}
+
+    {% endblock head %}
+  </head>
+  <body>
+    {% block body %}
+
+    {% block navbar %}
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="{{ url_for('dashboard.index') }}">Juniper Tickets</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ticket_options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ticket Options</a>
+                    <div class="dropdown-menu" aria-labelledby="ticket_options">
+                        <a class="dropdown-item" href="{{ url_for('products.add_product') }}">Add Ticket Type</a>
+                        <a class="dropdown-item" href="{{ url_for('products.list_products') }}">Current Ticket Types</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="shows" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shows</a>
+                    <div class="dropdown-menu" aria-labelledby="shows">
+                        <a class="dropdown-item" href="{{ url_for('events.create_show') }}">Add New Show</a>
+                        <a class="dropdown-item" href="{{ url_for('events.list_shows') }}">Shows</a>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('user.list') }}">Users</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav">
+                {% if current_user.is_anonymous %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+                </li>
+                {% else %}
+                <li  class="nav-item">
+                    <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    {% endblock navbar %}
+
+    <main role="main" class="container">
+
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ 'info' if category == 'message' else category }} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        {% if msg %}
+            <div class="alert alert-{{ msg[1] }} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ msg[0] }}
+            </div>
+        {% endif %}
+
+        {% block content %}{% endblock content %}
+    </main><!-- /.container -->
+
+    {% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="{{ url_for('main.static', filename='vendor/fullcalendar-4.3.1/packages/core/main.js') }}"></script>
+    <script src="{{ url_for('main.static', filename='vendor/fullcalendar-4.3.1/packages/interaction/main.js') }}"></script>
+    <script src="{{ url_for('main.static', filename='vendor/fullcalendar-4.3.1/packages/daygrid/main.js') }}"></script>
+    <script src="{{ url_for('main.static', filename='vendor/fullcalendar-4.3.1/packages/timegrid/main.js') }}"></script>
+    <script src="{{ url_for('main.static', filename='vendor/fullcalendar-4.3.1/packages/list/main.js') }}"></script>
+    {{ moment.include_moment() }}
+    {% endblock scripts %}
+
+    <footer class="footer mt-auto py-3">
+        <div class="container">
+            <span class="text-muted">Powered by Charleston<sup>AI</sup></span>
+        </div>
+    </footer>
+    {% endblock body %}
+  </body>
+
+{% endblock html %}
+</html>
+{% endblock doc %}

@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+
+{%- block html %}
+  <head>
+    {%- block head %}
+    <title>{% block title %}
+    {% if title %}{{ title }} | {% endif %} The Black Fedora Theatre - Live, Interactive Plays
+    {% endblock %}</title>
+
+    {%- block metas %}
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="robots" id="robots" content='follow,index' />
+      <meta name="googlebot" content='follow,index' />
+      <meta name="keywords" content="" />
+      <meta name="description" content="Live comedy mystery theater in downtown Charleston, with clean comic whodunit shows, volunteer audience participation, and appetizers, drinks and desserts " />
+
+      <meta property="og:site_name" content="The Black Fedora" />
+      <meta property="og:type" content="article" />
+      <meta property="og:image" content="{{ url_for('blackfedora.static', filename='images/logo.png') }}" />
+      <meta property="og:title" content="The Black Fedora" />
+      <meta name="og:description" content="Charleston's Black Fedora Comedy Mystery Theatre & Shoppe at 164 Church Street (mere shoe prints from the downtown City Market) features year-round live comedy-mystery shows." />
+    {%- endblock metas %}
+
+    {%- block styles %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('blackfedora.static', filename='css/main.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('blackfedora.static', filename='fonts/font-awesome.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('blackfedora.static', filename='css/responsiveslides.css') }}" />
+
+    {# -- Bootstrap Style Imports -- #}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    {# -- Full Calendar Style Imports -- #}
+    <link href="{{ url_for('main.static', filename='vendor/fullcalendar-4.3.1/packages/core/main.css') }}" rel='stylesheet' />
+    <link href="{{ url_for('main.static', filename='vendor/fullcalendar-4.3.1/packages/daygrid/main.css') }}" rel='stylesheet' />
+    <link href="{{ url_for('main.static', filename='vendor/fullcalendar-4.3.1/packages/timegrid/main.css') }}" rel='stylesheet' />
+    <link href="{{ url_for('main.static', filename='vendor/fullcalendar-4.3.1/packages/list/main.css') }}" rel='stylesheet' />
+    <link href="{{ url_for('main.static', filename='vendor/fontawesome-free-5.12.1-web/css/all.min.css') }}" rel='stylesheet' />
+
+    {# -- Black Fedora Styles --#}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('blackfedora.static', filename='css/main.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('blackfedora.static', filename='fonts/font-awesome.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('blackfedora.static', filename='css/responsiveslides.css') }}" />
+    {%- endblock styles %}
+
+      <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-32884035-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        </script>
+
+        <!-- Facebook Pixel Code -->
+        <script>
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', '325163844647057');
+          fbq('track', 'PageView');
+        </script>
+        <noscript><img height="1" width="1" style="display:none"
+          src="https://www.facebook.com/tr?id=325163844647057&ev=PageView&noscript=1"
+        /></noscript>
+        <!-- End Facebook Pixel Code -->
+
+    {%- endblock head %}
+  </head>
+
+  <body>
+  {% block body -%}
+  <div id="page_wrapper">
+      <div class="content_wrap">
+          {% include 'blackfedora/_mainHeader.html' %}
+          <div class="content">
+            {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ 'info' if category == 'message' else category }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            {% block content %}{% endblock content %}
+          </div>
+          {% block footer %}
+          {% include 'blackfedora/_upper_footer.html' %}
+          {% include 'blackfedora/_footer.html' %}
+          {% endblock %}
+      </div>
+  </div>
+
+  {% block scripts %}
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="{{ url_for('blackfedora.static', filename='js/jquery.cycle.all.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('blackfedora.static', filename='js/hoverIntent.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('blackfedora.static', filename='js/jquery.bgiframe.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('blackfedora.static', filename='js/superfish.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('blackfedora.static', filename='js/supersubs.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('blackfedora.static', filename='js/jquery.validate.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('blackfedora.static', filename='js/responsiveslides.min.js') }}"></script>
+
+  {# -- Bootstrap JS Import -- #}
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  {# -- Full Calendar Imports -- #}
+  <script src="{{ url_for('main.static', filename='vendor/fullcalendar-4.3.1/packages/core/main.js') }}"></script>
+  <script src="{{ url_for('main.static', filename='vendor/fullcalendar-4.3.1/packages/interaction/main.js') }}"></script>
+  <script src="{{ url_for('main.static', filename='vendor/fullcalendar-4.3.1/packages/daygrid/main.js') }}"></script>
+  <script src="{{ url_for('main.static', filename='vendor/fullcalendar-4.3.1/packages/timegrid/main.js') }}"></script>
+  <script src="{{ url_for('main.static', filename='vendor/fullcalendar-4.3.1/packages/list/main.js') }}"></script>
+
+  <script type="text/javascript">
+  $(function () {$("#slider1").responsiveSlides({speed: 800});});
+  </script>
+    
+  <script type="application/javascript">
+  $(document).ready(function(){
+    $(".mobileMenu").click(function() {
+      $("#mainMenu").toggle("slow");
+    });
+
+    $("#dropDownLink1").click(function() {
+      $("#sm1").toggle("slow");
+    });
+
+    $("#dropDownLink2").click(function () {
+      $("#sm2").toggle("slow");
+    });
+  });
+  </script>
+
+  {%- endblock scripts %}
+  {%- endblock body %}
+  </body>
+
+{%- endblock html %}
+</html>

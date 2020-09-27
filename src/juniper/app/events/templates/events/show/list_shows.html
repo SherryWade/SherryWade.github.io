@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h1>Shows</h1>
+        <hr/>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+    {% include 'events/show/_show_table.html' %}
+    </div>
+</div>
+{% endblock %}

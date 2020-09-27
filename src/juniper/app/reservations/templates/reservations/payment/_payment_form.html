@@ -1,0 +1,106 @@
+{% from "_formhelpers.html" import render_field %}
+
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+  Please fix the form errors and try again.
+</div>
+{% endif %}
+
+{% if event.parent.offers|length < 1 %}
+<div class="alert alert-danger" role="alert">
+  Tickets for this show are not currently for sale.
+</div>
+{% else %}
+<form action="" class="form" method="post" role="form" novalidate>
+    <div class="row">
+        <div class="col">
+            <h3>Ticket Options</h3>
+        </div>
+    </div>
+
+    {% for field in form._fields %}
+    {% if field.startswith('offer_') %}
+    <div class="row">
+        <div class="col">
+            {{ render_field(form._fields[field]) }}
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    <div class="row mt-5">
+        <div class="col">
+            <h3>Contact Information</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ render_field(form.first_name) }}
+        </div>
+        <div class="col">
+            {{ render_field(form.last_name) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ render_field(form.email) }}
+        </div>
+        <div class="col">
+            {{ render_field(form.phone) }}
+        </div>
+    </div>
+
+    <div class="mt-5 row">
+        <div class="col">
+            <h3>Address</h3>
+            <p>This address information needs to match the address associated with your payment method.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ render_field(form.address1) }}
+        </div>
+        <div class="col">
+            {{ render_field(form.address2) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ render_field(form.city) }}
+        </div>
+        <div class="col">
+            {{ render_field(form.state) }}
+        </div>
+        <div class="col">
+            {{ render_field(form.zip) }}
+        </div>
+    </div>
+
+    <div class="mt-5 row">
+        <div class="col">
+            <h3>Payment Information</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ render_field(form.cc_number) }}
+        </div>
+        <div class="col">
+            {{ render_field(form.cvv) }}
+        </div>
+        <div class="col">
+            {{ render_field(form.expiration_month) }}
+        </div>
+        <div class="col">
+            {{ render_field(form.expiration_year) }}
+        </div>
+    </div>
+    {{ form.event_id }}
+    {{ form.csrf_token }}
+    {{ form.submit(class="mt-5 mb-6 btn btn-lg btn-secondary btn-block") }}
+</form>
+{% endif %}

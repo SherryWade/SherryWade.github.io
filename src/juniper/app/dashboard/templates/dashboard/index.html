@@ -1,0 +1,156 @@
+{% extends 'dashboard/base.html' %}
+{% from "dashboard/modals.html" import ticket_selection_modal %}
+{% block content %}
+
+<div class="row">
+    <div class="col">
+        <h1>Dashboard</h1>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col col-md-5">
+        <div class="card shadow">
+            <div class="card-header">
+                Event Calendar
+            </div>
+            <div id="calendar" class="card-body"></div>
+        </div>
+    </div>
+
+
+    <div class="col col-md-6 offset-md-1">
+        {% if next_event %}
+        <div class="card shadow">
+            {% if next_event.primary_image %}
+            <img class="card-img-top" width="100%"
+                 src="{{ url_for('blackfedora.static', filename='images/{}'.format(next_event.primary_image)) }}">
+            {% elif next_event.parent.primary_image %}
+            <img class="card-img-top" width="100%"
+                 src="{{ url_for('blackfedora.static', filename='images/{}'.format(next_event.parent.primary_image)) }}">
+            {% endif %}
+
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ next_event.parent.alternate_name }}
+                </h5>
+
+                <h6 class="card-subtitle mb-2 text-muted">
+                    {{ next_event.start_time.strftime('%a, %b %-d, %Y: %-I:%M %p') }}
+                </h6>
+
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th scope="row">Groups</th>
+                        <td>{{ next_event.reservations | count }}</td>
+                    </tr>
+
+                    {% set ticket_cnts = [] %}
+                    {% for r in next_event.reservations  %}
+                        {{ ticket_cnts.append( r.tickets|count ) or ''}}
+                    {% endfor %}
+
+                    <tr>
+                        <th scope="row">Tickets</th>
+                        <td>{{ ticket_cnts|sum }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn btn-primary btn-block"
+                                data-toggle="modal" data-target="#ticket_selection_modal">
+                            Sell Tickets
+                        </button>
+                    </div>
+                    <div class="col">
+                        <a class="btn btn-primary btn-block" role="button"
+                           href="{{ url_for('events.event', event_id=next_event.id) }}">
+                            View
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="card shadow mt-5">
+            <div class="card-header">
+                Latest Reservations
+            </div>
+
+            <div class="card-body">
+                <table class="table">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Performance</th>
+                        <th scope="col">Created</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    {% for res in latest_reservations %}
+                    <tr>
+                        <td><a href="">{{ res.under_name }}</a></td>
+                        <td>{{ res.reservation_for.parent.alternate_name }}</td>
+                        <td>{{ res.created.strftime('%a, %b %-d, %Y: %-I:%M %p') }}</td>
+                        <td>
+                            <a href="{{ url_for('reservations.reservation', reservation_id=res.id) }}">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% if ticket_selection_form %}
+{{ ticket_selection_modal(ticket_selection_form) }}
+{% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+<script type="application/javascript">
+
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+      header: {
+        left: 'today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek'
+      },
+        footer: {
+          center: 'prev,next'
+        },
+      editable: true,
+      navLinks: true, // can click day/week names to navigate views
+      eventLimit: true, // allow "more" link when too many events
+      events: {
+        url: "{{ url_for('events.json') }}",
+      },
+    });
+
+    calendar.render();
+  });
+
+</script>
+{% endblock %}

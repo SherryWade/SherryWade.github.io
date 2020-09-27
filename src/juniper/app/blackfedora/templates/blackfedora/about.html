@@ -1,0 +1,32 @@
+{% extends "blackfedora/base.html" %}
+
+{% block content %}
+<div class="interiorPageMain">
+    <div class="fullWidth">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/SppXENWPuZA?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+        <h1>About the Black Fedora</h1>
+        <p>Something funny is going on in downtown Charleston and it doesn't take Sherlock Holmes to deduce that if you love a good mystery... or need a good laugh... The Black Fedora Comedy Mystery Theatre & Shoppe is the solution.</p>
+
+        <p>Drop by anytime to browse this quirky Shoppe's mystery-themed books and gifts, but kill no time ordering show tickets because this cozy little theatre can sell out quickly!</p>
+
+        <p>Our audience-interactive comic mysteries run most evenings. Enjoy the comic whodunits <i>Inspector NoClue's Murder Mystery</i>, <i>Church Street Daughters of the Late Unpleasantness Garden, Gun, and Gin Club</i>, <i>Sherlock's Other Brother by a Southern Mother</i>, and our latest, <i>Murder Aboard the Starship Fed Ora</i>!</p>
+    </div>
+
+    <div class="fullWidth">
+        <p>Volunteer to play a character or choose to stay out of the spotlight and enjoy some tasty appetizers or something from the beer/wine/dessert bar.</p>
+
+        <p>Dropping by for the holiday? The Black Fedora Comedy Mystery Theatre has an offering for friends, family, and co-workers looking to share some laughs this season. <i>We Three Thieves</i> is a hapless holiday heist that offers plenty of end-of-the-year merriment.</p>
+
+        <p>Owner/producers Darryl & Sherry Wade relocated from Atlanta with nearly two decades of knowhow in the business of producing live, comic-mystery entertainment for corporate, college and general public audiences. Their love for the Low Country is why they're here &mdash; their passion for bringing together talented, friendly, funny people is why they produce great entertainment &mdash; and their mission of serving with a spirit of humor, playfulness and joy is why you will love your visit to...</p>
+    </div>
+
+    <div class="twoThird">
+        <p>The Black Fedora Comedy Mystery Theater & Shoppe!<br />Welcoming all who love a good mystery and those who could use a good laugh!</p>
+    </div>
+
+    <div class="oneThird">
+        <a href="{{ url_for('blackfedora.cast') }}" class="customButton">Meet the cast </a>
+    </div>
+</div>
+{% endblock %}

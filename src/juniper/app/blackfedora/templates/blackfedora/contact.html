@@ -1,0 +1,50 @@
+{% extends "blackfedora/base.html" %}
+
+{% block content %}
+
+<div class="interiorPageMain">
+    <div class="fullWidth">
+        <h1>Contact Us</h1>
+    </div>
+
+    <div class="oneThird">
+        <h2 class="customH3">Address:</h2>
+        <p>164 Church Street <br />Charleston, South Carolina 29401</p>
+
+        <h2 class="customH3">Phone Number:</h2>
+        <p>843-WE SMILE (843-937-6453)</p>
+
+        <h2 class="customH3">Hours:</h2>
+        <p>
+            Tuesday - Sunday: Noon to Showtime
+            <br />
+            See <a href="{{ url_for('blackfedora.buy_tickets') }}">Buy Tickets</a> for showtimes.
+            <br />
+        </p>
+
+        <h2 class="customH3">Email:</h2>
+        <p><a href="mailto:info@charlestonmysteries.com"><u>info@charlestonmysteries.com</u></a></p>
+
+        <h2 class="customH3">Facebook:</h2>
+        <p><a target="_blank" href="http://www.facebook.com/charlestonmysteries" ><u>facebook.com/charlestonmysteries</u></a></p>
+    </div>
+
+    <div class="oneThird">
+        <h2 class="customH3">For Event Planners:</h2>
+        <p> We're the perfect place to host killer corporate events and private parties. Birthdays, anniversaries,
+            engagement parties, and corporate gatherings are fun at the Black Fedora. Fill out
+            <a href="{{ url_for('blackfedora.groups') }}" class="customH3">this form</a> and we'll be in touch.</p>
+    </div>
+
+    <div class="oneThird">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3354.4455668440028!2d-79.93161048520331!3d32.780443080970954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88fe7a0de92ab469%3A0x5ae593e8e3e4a1ba!2s164+Church+St%2C+Charleston%2C+SC+29401!5e0!3m2!1sen!2s!4v1492413032869" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+
+    <div class="fullWidth" style="margin-bottom:30px">
+        <p style="text-align:left">
+            <a href="http://eepurl.com/bAeROb" target="_blank" class="cButton">SUBSCRIBE TO OUR E-NEWSLETTER</a>
+        </p>
+    </div>
+</div>
+
+{% endblock %}

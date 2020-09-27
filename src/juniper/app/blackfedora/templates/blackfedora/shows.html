@@ -1,0 +1,50 @@
+{% extends "blackfedora/base.html" %}
+
+{% block content %}
+<div class="interiorPageMain">
+    <div class="oneThird">
+        <div>
+            <ul class="rslides" id="slider1" style="max-width:320px;">
+                {% for show in shows %}
+                <li><img class="main_img" src="{{ url_for('blackfedora.static', filename='images/{}'.format(show.secondary_image) ) }}" alt="{{ show.alternate_name }}"/></li>
+                {% endfor %}
+             </ul>
+        </div>
+
+        <div>
+            <p style="text-align:left;margin-top:20px;margin-bottom:10px">
+                <a href="{{ url_for('blackfedora.buy_tickets') }}" class="customButton">BUY TICKETS</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        $('div#carousel').cycle({
+            fx: 'fade',
+            speed: 2500
+        });
+    </script>
+
+    <div class="twoThird" style="margin-bottom:0px">
+        <h1>Our Shows</h1>
+        <p>
+            Welcome to Charleston's only live comedy mystery theatre, where the audience is the star! All our
+            shows are clean comic whodunits, and they all feature YOU &mdash; or at least some brave soul sitting
+            near you who volunteers for a role!
+        </p>
+
+        <p>
+            All shows are original &mdash; written by us &mdash; and can be seen only at our cozy home on Church
+            Street. Each show lasts approximately two hours. The ticket is for the show only, and desserts, appetizers
+            and drinks are optional. <b>All laughs are not optional and are included in ticket price!</b>
+        </p>
+
+        {% for show in shows %}
+        <h2 class="customH3">
+            <a href="{{ url_for('blackfedora.our_shows', slug=show.slug) }}">{{ show.name }} >></a>
+        </h2>
+        <p>{{ show.disambiguating_description }} {{ show.audience.audience_type }}</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

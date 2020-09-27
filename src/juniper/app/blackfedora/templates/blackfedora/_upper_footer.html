@@ -1,0 +1,30 @@
+<div class="upperFooter">
+    <div class="ufCol1">
+        <p>Located&nbsp;at&nbsp;164&nbsp;Church&nbsp;Street,&nbsp;mere&nbsp;shoe</p>
+        <p>prints from the downtown City Market.</p>
+
+        <H3><a href="{{ url_for('blackfedora.parking_and_directions') }}">GET DIRECTIONS</a></H3>
+    </div>
+
+    <div class="ufCol2">
+        <p>We are TripAdvisor recommended!</p>
+        <h3><a href="{{ url_for('blackfedora.contact') }}">CONNECT WITH US</a></h3>
+        <p class="ufSocial">
+            <a href="https://web.facebook.com/charlestonmysteries?_rdc=1&_rdr" target="_blank">
+                <img src="{{ url_for('blackfedora.static', filename='images/fb.png') }}">
+            </a>
+            <a href="https://www.tripadvisor.com/Attraction_Review-g54171-d3487690-Reviews-The_Black_Fedora_Comedy_Mystery_Theatre-Charleston_South_Carolina.html" target="_blank">
+                <img src="{{ url_for('blackfedora.static', filename='images/glasses.png') }}">
+            </a>
+            <a href="mailto:info@charlestonmysteries.com" target="_blank">
+                <img src="{{ url_for('blackfedora.static', filename='images/email.png') }}">
+            </a>
+        </p>
+    </div>
+
+    <div class="ufCol3">
+        <p>More on what to expect</p>
+        <p>at a Black Fedora show</p>
+        <H3><a href="{{ url_for('blackfedora.what_to_expect') }}">LAUGH WITH US</a></H3>
+    </div>
+</div><!-- END: upper footer -->

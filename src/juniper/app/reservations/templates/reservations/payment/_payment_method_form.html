@@ -1,0 +1,11 @@
+
+<form action="" class="form" method="post" role="form" novalidate>
+    <div class="row mb-5">
+        <div class="col">
+            {{ render_field(payment_method_form.payment_method) }}
+        </div>
+    </div>
+
+    {{ payment_method_form.csrf_token }}
+    {{ payment_method_form.submit(class="btn btn-lg btn-primary btn-block") }}
+</form>

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h1>Select Payment Type</h1>
+        <hr />
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-3 ">
+        {% include 'reservations/payment/_payment_method_form.html' %}
+    </div>
+</div>
+{% endblock %}

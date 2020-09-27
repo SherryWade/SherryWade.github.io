@@ -1,0 +1,26 @@
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+  Please fix the form errors and try again.
+</div>
+{% endif %}
+
+<form action="" class="form" method="post" role="form" novalidate>
+    <div class="row">
+        <div class="col">
+            {{ render_field(form.name) }}
+        </div>
+
+        <div class="col">
+            {{ render_field(form.price) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ render_field(form.description) }}
+        </div>
+    </div>
+
+    {{ form.csrf_token }}
+    {{ form.submit(class="btn mt-5 btn-lg btn-primary btn-block") }}
+</form>

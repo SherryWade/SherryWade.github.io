@@ -1,0 +1,30 @@
+<div class="bottomFooter">
+    <div class="bfLinks">
+        <ul>
+            <li class="bfLinkFirstChild"><a href="{{ url_for('blackfedora.shows') }}">Our Shows</a></li>
+            <li><a href="{{ url_for('blackfedora.buy_tickets') }}">Buy Tickets</a></li>
+            <li><a href="{{ url_for('blackfedora.groups') }}">Groups</a></li>
+            <!--<li><a href="giftcertificates.php">Gift Certificates</a></li>-->
+            <li><a href="{{ url_for('blackfedora.about') }}">About</a></li>
+        </ul>
+    </div>
+
+    <div class="bfCopyRight">
+        <p>
+            <span>&copy; 2020 The Black Fedora Comedy </span>
+            <span>Mystery Theatre, LLC. All Rights Reserved.</span>
+            <!--<span><a href="{{ url_for('blackfedora.auditions') }}">Audition Information</a></span>-->
+        </p>
+        <p style="margin-top:10px !important;">
+            <span>164 Church Street &middot;</span>
+            <span>Charleston, South Carolina 29401 &middot;</span>
+            <span>843-WE-SMILE (843-937-6453)</span>
+        </p>
+    </div>
+
+    <div class="bfImg">
+        <a target="_blank" href="http://www.tripadvisor.com/Attraction_Review-g54171-d3487690-Reviews-The_Black_Fedora_Comedy_Mystery_Theatre-Charleston_South_Carolina.html">
+            <img width="100px" src="{{ url_for('blackfedora.static', filename='images/2019-trip-advisor.jpg') }}">
+        </a>
+    </div>
+</div><!-- END: bottom footer -->

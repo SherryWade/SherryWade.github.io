@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h1>Add New Event</h1>
+        <p>Use this form to create a single, one-off, event. If you want to create an event that will have multiple instances, you will need to do that from the Multi-Event Page.</p>
+        <hr/>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+    <script type="text/javascript">
+        $(function () {
+            $('#door_time').datetimepicker();
+            $('#start_time').datetimepicker();
+            $('#end_time').datetimepicker();
+        });
+    </script>
+{% endblock %}

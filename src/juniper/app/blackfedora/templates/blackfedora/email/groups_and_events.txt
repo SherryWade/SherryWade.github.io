@@ -1,0 +1,9 @@
+The following information was submitted from the Groups and Events page:
+
+Name: {{ name }}
+
+Email: {{ email }}
+
+Phone: {{ phone }}
+
+Description: {{ description }}

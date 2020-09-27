@@ -1,0 +1,32 @@
+{% extends "blackfedora/base.html" %}
+
+{% block content %}
+<div class="interiorPageMain">
+    <div class="fullWidth">
+        <h1>Parking and Directions</h1>
+        <h3 class="customH3">Location:</h3>
+        <p>The Black Fedora Comedy Mystery Theatre and Shoppe makes its home in historic downtown Charleston, South Carolina.</p>
+        <p>We're located at <b>164 Church Street</b>, between South Market Street and Cumberland Street.</p>
+        <p>We're a block from the downtown City Market and are adjacent to the French Quarter Inn &amp; Tommy Condon's Restaurant.</p>
+    </div>
+
+    <div class="oneThird">
+        <img src="{{ url_for('blackfedora.static', filename='images/black-fedora-map.png') }}" width="100%" alt="Downtown Charleston map with Black Fedora theater"/>
+    </div>
+
+    <div class="twoThird">
+        <h3 class="customH3">Parking:</h3>
+        <p>We're conveniently located near a number of parking lots. A city parking garage is across the street from the theatre at the corner of Cumberland and Church streets.</p>
+        <p>Map of City Market and nearby parking:
+            <br />
+
+            <a href="http://www.thecharlestoncitymarket.com/main/directions-and-parking" class="longLink">http://www.thecharlestoncitymarket.com/main/directions-and-parking</a>
+        </p>
+
+        <br />
+
+        <h3 class="customH3">Google Directions:</h3>
+        <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=164+Church+Street,+Charleston,+SC&amp;aq=0&amp;oq=164+Church+Street,+Charleston&amp;sll=37.0625,-95.677068&amp;sspn=40.052282,86.572266&amp;t=m&amp;ie=UTF8&amp;hq=&amp;hnear=164+Church+St,+Charleston,+South+Carolina+29401&amp;ll=32.780297,-79.929552&amp;spn=0.002602,0.005284&amp;z=14&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=164+Church+Street,+Charleston,+SC&amp;aq=0&amp;oq=164+Church+Street,+Charleston&amp;sll=37.0625,-95.677068&amp;sspn=40.052282,86.572266&amp;t=m&amp;ie=UTF8&amp;hq=&amp;hnear=164+Church+St,+Charleston,+South+Carolina+29401&amp;ll=32.780297,-79.929552&amp;spn=0.002602,0.005284&amp;z=14" style="color:#0000FF;text-align:left">View Larger Map</a></small>
+    </div>
+</div>
+{% endblock %}

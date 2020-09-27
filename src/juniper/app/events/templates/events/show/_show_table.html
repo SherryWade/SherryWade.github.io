@@ -1,0 +1,25 @@
+<table class="table">
+    <thead class="thead-light">
+    <tr>
+        <th scope="col">id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Last Modified</th>
+        <th scope="col">Modified By</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    {% for show in shows %}
+    <tr>
+        <th scope="row">{{ show.id }}</th>
+        <td><a href="{{ url_for('events.show', event_id=show.id) }}">{{ show.name }}</a></td>
+        <td>{{ show.modified }}</td>
+        <td>{{ show.modified_by }}</td>
+        <td><a href="{{ url_for('events.edit_show', event_id=show.id) }}"><i class="fas fa-edit"></i></a></td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>

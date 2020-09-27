@@ -1,0 +1,49 @@
+{% extends "blackfedora/base.html" %}
+
+{% block content %}
+
+<div class="interiorPageMain">
+    <div class="twoThird">
+        <h1>Groups &amp; Events</h1>
+
+        <p>We enjoy having groups at the Black Fedora, whether it's a corporate outing or a celebration with friends. We have tables and chairs and banquets along the walls rather than typical theatre seating, and we'll make sure your group is seated all in the same area. We'll also make sure some of your group members are featured in the show!</p>
+
+        <p>You don't have to purchase all the tickets at once to be seated together. Group members can purchase individually &mdash; everyone should just put the group name in the "Seat With" box so we will know to put you together. We do not offer a group ticket discount.</p>
+
+        <p>We also have a small comedy and mystery gift shoppe at our entrance. If you are hoping to give your guests (or guest of honor) a fedora, t-shirt, board game, or unusual keepsake, we have some interesting selections.</p>
+
+           <p>Our <a href="{{ url_for('blackfedora.static', filename='Pick_Your_Poison.pdf' ) }}"><u><i>menu</u></i></a> of appetizers, drinks, and homemade desserts is small but tasty. The lava cake is a great birthday treat!</p>
+
+
+        <p>If you have any additional questions, please complete the form. Thank you for your interest!</p>
+    </div>
+
+    <div class="oneThird">
+        <div class="formDiv" style="padding-right:10px">
+            <form action="" class="form" method="post" role="form">
+                <div class="col">
+                    <div class="form-group">
+                        {{ form.name.label }}
+                        {{ form.name(class="form-control", id="name")}}
+                    </div>
+                    <div class="form-group">
+                        {{ form.email.label }}
+                        {{ form.email(class="form-control", id="email") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.phone.label }}
+                        {{ form.phone(class="form-control", id="email") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.description.label }}
+                        {{ form.description(class="form-control", id="email") }}
+                    </div>
+                </div>
+                {{ form.csrf_token }}
+                {{ form.submit(class="btn btn-lg btn-primary btn-block") }}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

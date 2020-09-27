@@ -1,0 +1,25 @@
+<table class="table">
+    <thead class="thead-light">
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    {% for product in products %}
+    <tr>
+        <th scope="row">{{ product.id }}</th>
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>${{ product.price_specification.price }}</td>
+        <td><a href="{# url_for('events.edit_show', event_id=show.id) #}"><i class="fas fa-edit"></i></a></td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>

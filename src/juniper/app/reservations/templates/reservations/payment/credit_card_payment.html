@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h1>Credit Card Payment</h1>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        {% include 'reservations/payment/_payment_form.html' %}
+    </div>
+</div>
+{% endblock %}

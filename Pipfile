@@ -1,0 +1,27 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pytest = "*"
+pytest-cov = "*"
+
+[packages]
+juniper = {editable = true,path = "."}
+flask = "*"
+flask-migrate = "*"
+flask-login = "*"
+flask-wtf = "*"
+jwt = "*"
+pandas = "*"
+luigi = "*"
+boto3 = "*"
+python-dotenv = "*"
+requests = "*"
+pymysql = "*"
+flask-moment = "*"
+pyjwt = "*"
+
+[requires]
+python_version = "3.7"

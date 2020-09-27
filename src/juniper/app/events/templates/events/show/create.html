@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h1>Add Show</h1>
+        <p>
+            Use this form to create a new show. Once the show has been created, you will be able to
+            add show times to it.
+        </p>
+        <hr/>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+    {% include 'events/show/_show_form.html' %}
+    </div>
+</div>
+{% endblock %}

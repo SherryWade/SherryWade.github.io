@@ -1,0 +1,55 @@
+<div class="topHeader">
+    <div class="thLeft"></div>
+    <div class="thRight">
+    <ul class="topHeadList">
+    	<li><i class="fa fa-phone"></i>
+			<a href="tel:843-937-6453" target="_blank" style="text-decoration:none">843-937-6453</a>
+		</li>
+        <li><i class=" fa fa-envelope"></i>
+			<a href="mailto:info@charlestonmysteries.com" target="_blank" style="text-decoration:none">
+				info@charlestonmysteries.com
+			</a>
+		</li>
+        <li><i class=" fa fa-map-marker"></i> 164 Church Street · Charleston, SC</li>
+    </ul>
+    </div>
+</div>
+<div class="mainHeader">
+    <div class="mhLeft"><a href="{{ url_for('blackfedora.index') }}">
+		<img src="{{ url_for('blackfedora.static', filename='images/logo.png') }}" alt="theater logo" class="logo">
+	</a></div>
+    <div class="mhRight">
+    <button type="button" class="mobileMenu"><i class="fa fa-bars"></i></button>
+    	<ul id="mainMenu">
+            <li class="hasDropDown" style="    margin-left: 0px;">
+				<a href="{{ url_for('blackfedora.shows') }}">Our Shows </a><span><i class="fa fa-caret-down" aria-hidden="true" id="dropDownLink1"></i>
+            	<ul class="submenu" id="sm1">
+                    <li><a href="{{ url_for('blackfedora.shows') }}">Our Shows</a></li>
+                    {% for s in shows %}
+                    <li><a href="{{ url_for('blackfedora.our_shows', slug=s.slug) }}">{{ s.alternate_name }}</a></li>
+                    {% endfor %}
+                    <!--<li><a href="ginclub.php?eid=7">Garden, Gun &amp; Gin Club</a></li>-->
+            		<!--<li><a href="inspectornoclues.php?eid=1">Inspector NoClue's Mystery</a></li>-->
+            		<!--<li><a href="sherlocksotherbrother.php?eid=11">Sherlock's Other Brother</a></li>-->
+					<!--<li><a href="murderaboardstarship.php">Murder Aboard the Starship</a></li>-->
+					<!--<li><a href="wethreethieves.php".php">We Three Thieves</a></li>-->
+                </ul></span>
+            </li>
+            <li><a href="{{ url_for('blackfedora.buy_tickets') }}">Buy Tickets</a></li>
+            <li><a href="{{ url_for('blackfedora.groups') }}">Groups</a></li>
+            <!--<li><a href="giftcertificates.php">Gift Certificates</a></li>-->
+            <li><a href="{{ url_for('blackfedora.contact') }}">Contact Us</a></li>
+            <li class="hasDropDown"><a href="{{ url_for('blackfedora.about') }}">About </a><span><i class="fa fa-caret-down" aria-hidden="true" id="dropDownLink2"></i></span>
+            	<ul class="submenu" id="sm2">
+                	<li><a href="{{ url_for('blackfedora.about') }}">About </a></li>
+                    <li><a href="{{ url_for('blackfedora.what_to_expect') }}">What To Expect</a></li>
+            		<li><a href="{{ url_for('blackfedora.parking_and_directions') }}">Directions/Parking</a></li>
+            		<li><a href="{{ url_for('blackfedora.cast') }}">The Cast</a></li>
+                    <li><a href="{{ url_for('blackfedora.press') }}">Reviews</a></li>
+            		<li><a href="{{ url_for('blackfedora.accessibility') }}">Accessibility</a></li>
+                    <li><a href="{{ url_for('blackfedora.contact') }}">Contact Us</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

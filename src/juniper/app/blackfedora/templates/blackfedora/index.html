@@ -1,0 +1,85 @@
+{% extends "blackfedora/base_homepage.html" %}
+
+{% block content %}
+
+<div class="main">
+    <ul class="rslides" id="slider1">
+        <li><a href="murderaboardstarship.php">
+            <img class="main_img" src="{{ url_for('blackfedora.static', filename='images/slider/carousel-murderaboardstarship.jpg') }}" alt="Starship Show"/>
+        </a></li>
+        <li><a href="sherlocksotherbrother.php">
+            <img class="main_img" src="{{ url_for('blackfedora.static', filename='images/slider/carousel-sherlocksotherbrother.png') }}" alt="Sherlock's Other Brother Show"/>
+        </a></li>
+        <li><a href="inspectornoclues.php">
+            <img class="main_img" src="{{ url_for('blackfedora.static', filename='images/slider/carousel-inspector-no-clues.jpg') }}" alt="Inspector NoClue Show"/>
+        </a></li>
+        <li><a href="ginclub.php">
+            <img class="main_img" src="{{ url_for('blackfedora.static', filename='images/slider/carousel-GGG.jpg') }}" alt="Gin Club Show"/>
+        </a></li>
+    </ul>
+
+    <div style="text-align:center; margin-top: 18px; margin-bottom: 30px;">
+        <div class="alert alert-secondary" role="alert">
+            <h1 class="text-danger">WE ARE TEMPORARILY CLOSED</h1>
+            <h3 class="text-bf-blue">Due To That Darn Virus.</h3>
+
+            <p class="text-bf-blue" style="margin-bottom: 0;">But please check out our site</p>
+            <p class="text-danger">for next time!</p>
+
+            <p class="text-bf-blue" style="margin-bottom: 0;">Because we're going to need</p>
+            <p class="text-danger">your business</p>
+
+            <p class="text-bf-blue" style="margin-bottom: 0;">And you might find you'll need</p>
+            <p class="text-danger">a few laughs!</p>
+        </div>
+    </div>
+
+    <div style="text-align:center;    margin-top: 18px;margin-bottom: 30px;">
+        <p style="font-weight:bold;font-size:20px;">Something Funny's going on in Downtown Charleston!</p>
+        <ul class="buttonList">
+            <li class="customButtons"><a href="{{ url_for('blackfedora.buy_tickets') }}">Buy Tickets</a></li>
+            <li class="customButtons">
+                <a href="{{ url_for('blackfedora.shows') }}" style="margin-left: 30px;" class="secondButton">Our Shows</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="bannerDiv">
+        <img src="{{ url_for('blackfedora.static', filename='images/Map-Graphic.png') }}" width="100%" alt="City Market map"/>
+        <div class="mapText">
+            <p>Located at 164 Church Street, mere shoe prints from the downtown City Market.</p>
+            <h3><a href="{{ url_for('blackfedora.parking_and_directions') }}">GET DIRECTIONS</a></h3>
+        </div>
+    </div>
+
+    <div class="bannerDiv">
+        <img src="{{ url_for('blackfedora.static', filename='images/table_cvb-graphic.png') }}" width="100%" alt="appetizers and wine"/>
+        <div class="mapText">
+            <p>Featuring volunteer audience participation, appetizers, drinks and desserts.</p>
+            <h3><a href="{{ url_for('blackfedora.what_to_expect') }}">EXPERIENCE THEATRE - PLAY A ROLE!</a></h3>
+        </div>
+    </div>
+
+    <div class="bannerDiv">
+        <img src="{{ url_for('blackfedora.static', filename='images/CandidTheaterShot-graphic.png') }}" width="100%" alt="Funny Actors"/>
+        <div class="mapText">
+            <p>We are TripAdvisor recommended!</p>
+            <h3>
+                <a href="{{ url_for('blackfedora.contact') }}">CONNECT WITH US</a>
+                <a href="https://web.facebook.com/charlestonmysteries?_rdc=1&_rdr" target="_blank">
+                    <img src="{{ url_for('blackfedora.static', filename='images/FB.png') }}" alt="facebook">
+                </a>
+                <a href="https://www.tripadvisor.com/Attraction_Review-g54171-d3487690-Reviews-The_Black_Fedora_Comedy_Mystery_Theatre-Charleston_South_Carolina.html" target="_blank">
+                    <img src="{{ url_for('blackfedora.static', filename='images/glasses.png') }}" alt="tripadvisor">
+                </a>
+                <a href="mailto:info@charlestonmysteries.com" target="_blank">
+                    <img src="{{ url_for('blackfedora.static', filename='images/email.png') }}" alt="email link">
+                </a>
+            </h3>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+</div><! -- end .main -->
+
+{% endblock %}

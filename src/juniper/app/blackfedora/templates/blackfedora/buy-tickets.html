@@ -1,0 +1,47 @@
+{% extends "blackfedora/base.html" %}
+
+{% block content %}
+<div class="interiorPageMain">
+    <h1>Buy Tickets</h1>
+    Doors open 30 minutes before show start. We recommend arriving 15 minutes prior to show time to place orders
+    and settle in. Dress is casual but bring a sweater or light jacket &mdash; we keep it cool!
+
+    <br /><br />
+
+    <div id="calendar"></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+<script type="application/javascript">
+
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        timeZone: 'America/New_York',
+        plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+        header: {
+            left: 'prev',
+            center: 'title',
+            right: 'next'
+        },
+        footer: {
+            center: ''
+        },
+        editable: true,
+        navLinks: true, // can click day/week names to navigate views
+        // eventLimit: true, // allow "more" link when too many events
+
+        events: {
+            url: "{{ url_for('blackfedora.json') }}",
+        },
+    });
+
+    calendar.render();
+  });
+
+</script>
+{% endblock %}

@@ -1,0 +1,25 @@
+<table class="table">
+    <thead class="thead-light">
+    <tr>
+        <th scope="col">id</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Last Seen</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    {% for user in users %}
+    <tr>
+        <th scope="row">{{ user.id }}</th>
+        <td><a href="{# url_for('events.show', event_id=show.id) #}">{{ user.username }}</a></td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.last_seen }}</td>
+        <td><a href="{# url_for('events.edit_show', event_id=show.id) #}"><i class="fas fa-edit"></i></a></td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>

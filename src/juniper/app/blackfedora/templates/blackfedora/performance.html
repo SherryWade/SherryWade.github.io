@@ -1,0 +1,49 @@
+{% extends "blackfedora/base.html" %}
+{% from "blackfedora/modals.html" import ticket_selection_modal %}
+
+{% block content %}
+<div class="interiorPageMain">
+
+
+    <div class="oneThird">
+        <img src="{{ url_for('blackfedora.static', filename='images/{}'.format(performance.parent.secondary_image)) }}" alt="Gin Club Show">
+
+        {% if performance.is_active %}
+        <button type="button" class="btn btn-primary btn-block btn-lg mt-3"
+                data-toggle="modal" data-target="#ticket_selection_modal">
+            BUY TICKETS
+        </button>
+        {% endif %}
+    </div>
+
+    <div class="twoThird">
+
+        {% if not performance.is_active %}
+        <div class="alert alert-warning" role="alert">
+            Tickets for this show are not currently for sale.
+        </div>
+        {% endif %}
+
+        <h1>{{ performance.parent.name }}</h1>
+        <h2 class="customH3">{{ performance.parent.disambiguating_description }}</h2>
+        <h4 class="mb-3">Start Time: {{ performance.start_time.strftime('%a, %b %-d, %Y: %-I:%M %p') }}</h4>
+        <p>
+            {% if performance.parent.audience.audience_type %}
+            Recommended for: {{ performance.parent.audience.audience_type }}
+            <br />
+            {% endif %}
+            Rated: {{ performance.parent.audience.name }}
+        </p>
+
+        <p>{{ performance.parent.description }}</p>
+    </div>
+</div>
+
+<div class="fullWidth" style="margin-bottom:-4px">
+    <p><img src="{{ url_for('blackfedora.static', filename='images/{}'.format(performance.parent.primary_image)) }}" alt="Church Street Daughters" /></p>
+</div>
+
+{% if performance.is_active %}
+{{ ticket_selection_modal(ticket_selection_form) }}
+{% endif %}
+{% endblock %}

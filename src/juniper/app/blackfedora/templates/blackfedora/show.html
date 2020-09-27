@@ -1,0 +1,29 @@
+{% extends "blackfedora/base.html" %}
+
+{% block content %}
+<div class="interiorPageMain">
+
+    <div class="oneThird">
+        <img src="{{ url_for('blackfedora.static', filename='images/{}'.format(show.secondary_image)) }}" alt="Gin Club Show">
+        <p style="text-align:left;margin-top:10px"><a href="{{ url_for('blackfedora.buy_tickets') }}" class="customButton" >BUY TICKETS</a></p>
+    </div>
+
+    <div class="twoThird">
+        <h1>{{ show.name }}</h1>
+        <h2 class="customH3">{{ show.disambiguating_description }}</h2>
+        <p>
+            {% if show.audience.audience_type %}
+            Recommended for: {{ show.audience.audience_type }}
+            <br />
+            {% endif %}
+            Rated: {{ show.audience.name }}
+        </p>
+
+        <p>{{ show.description }}</p>
+    </div>
+</div>
+
+<div class="fullWidth" style="margin-bottom:-4px">
+    <p><img src="{{ url_for('blackfedora.static', filename='images/{}'.format(show.primary_image)) }}" alt="Church Street Daughters" /></p>
+</div>
+{% endblock %}

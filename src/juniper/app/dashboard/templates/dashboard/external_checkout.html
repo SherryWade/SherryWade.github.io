@@ -1,0 +1,76 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col">
+        <h1>Checkout</h1>
+        <hr />
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col col-md-5">
+        <div class="card ">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Pricing</h6>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Item</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Unit Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in cart['items'] %}
+                    <tr>
+                        <th scope="row">{{ cart['items'][item]['name'] }}</th>
+                        <td>{{ cart['items'][item]['quantity'] }}</td>
+                        <td>${{ cart['items'][item]['price'] }}</td>
+                    </tr>
+                    {% endfor %}
+
+                    <tr class="table-active">
+                        <th scope="row">Subtotal</th>
+                        <td></td>
+                        <td>${{ cart['pricing']['subtotal']}}</td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">Taxes</th>
+                        <td></td>
+                        <td>${{ cart['pricing']['taxes']}}</td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">Fees</th>
+                        <td></td>
+                        <td>${{ cart['pricing']['fees']}}</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr class="table-active">
+                        <th scope="row">Total</th>
+                        <td></td>
+                        <th scope="col">${{ cart['pricing']['total']}}</th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col col-md-7 col-md-offset-1">
+        <div class="card ">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Reservation Information</h6>
+                {% include 'payments/_base_payment_form.html' %}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+{% endblock %}
