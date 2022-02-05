@@ -18,7 +18,7 @@
         </a></li>
     </ul>
 
-    <div style="text-align:center; margin-top: 18px; margin-bottom: 30px;">
+ <!--   <div style="text-align:center; margin-top: 18px; margin-bottom: 30px;">
         <div class="alert alert-secondary" role="alert">
             <h1 class="text-danger">WE ARE TEMPORARILY CLOSED</h1>
             <h3 class="text-bf-blue">Due To That Darn Virus.</h3>
@@ -36,6 +36,17 @@
 
     <div style="text-align:center;    margin-top: 18px;margin-bottom: 30px;">
         <p style="font-weight:bold;font-size:20px;">Something Funny's going on in Downtown Charleston!</p>
+        <ul class="buttonList">
+            <li class="customButtons"><a href="{{ url_for('blackfedora.buy_tickets') }}">Buy Tickets</a></li>
+            <li class="customButtons">
+                <a href="{{ url_for('blackfedora.shows') }}" style="margin-left: 30px;" class="secondButton">Our Shows</a>
+            </li>
+        </ul>
+    </div>-->
+
+<div style="text-align:center;    margin-top: 18px;margin-bottom: 30px;">
+	    <p><h3 class="text-bf-blue">Something Funny's Going On in Downtown Charleston!</h3></p>
+	<p><h3 class="text-bf-blue" style="margin-bottom: 0;">Welcome to our </h3><h3 class="text-bf-gold">10th Anniversary Season!</h3></p>
         <ul class="buttonList">
             <li class="customButtons"><a href="{{ url_for('blackfedora.buy_tickets') }}">Buy Tickets</a></li>
             <li class="customButtons">
